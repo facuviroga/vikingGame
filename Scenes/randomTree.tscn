@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0uhuo8vqrw3f"]
+
+[ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="1_jg5d1"]
+[ext_resource type="Texture2D" uid="uid://b1ftbexdf8d6w" path="res://Assets/Tile maps/TX Plant.png" id="2_b5uo0"]
+[ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="2_sdtjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05awr"]
+size = Vector2(14, 7)
+
+[node name="RandomTree" type="AnimatableBody2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_jg5d1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_05awr")
+debug_color = Color(0.841894, 0.29898, 0.609052, 0.42)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_sdtjc")
+
+[node name="Tree 3" type="Sprite2D" parent="Node2D"]
+position = Vector2(2, -62)
+texture = ExtResource("2_b5uo0")
+region_enabled = true
+region_rect = Rect2(22, 13, 118, 146)
+
+[node name="Tree 2" type="Sprite2D" parent="Node2D"]
+position = Vector2(3, -63)
+texture = ExtResource("2_b5uo0")
+region_enabled = true
+region_rect = Rect2(158, 12, 104, 145)
+
+[node name="Tree 1" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -53)
+texture = ExtResource("2_b5uo0")
+region_enabled = true
+region_rect = Rect2(291, 28, 91, 130)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk2g7fc834oou"]
+
+[ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="1_2dxqc"]
+[ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="2_qajpw"]
+[ext_resource type="Texture2D" uid="uid://bwfyh24l024py" path="res://Assets/Tile maps/TX Props.png" id="3_4kfln"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2csb8"]
+radius = 6.98288
+height = 19.9974
+
+[node name="boxOrVase" type="AnimatableBody2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_2dxqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+rotation = -1.587
+shape = SubResource("CapsuleShape2D_2csb8")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_qajpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(0, -18)
+texture = ExtResource("3_4kfln")
+region_enabled = true
+region_rect = Rect2(160.798, 152.447, 30.323, 38.2536)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(0, -20)
+texture = ExtResource("3_4kfln")
+region_enabled = true
+region_rect = Rect2(162.686, 86.1774, 25.6579, 38.7201)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1, -16)
+texture = ExtResource("3_4kfln")
+region_enabled = true
+region_rect = Rect2(162.698, 216.342, 25.1914, 34.5215)
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(1, -14)
+texture = ExtResource("3_4kfln")
+region_enabled = true
+region_rect = Rect2(163.148, 287.278, 27.5239, 28.9234)
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(0, -16)
+texture = ExtResource("3_4kfln")
+region_enabled = true
+region_rect = Rect2(163.162, 346.979, 25.1914, 35.4545)
