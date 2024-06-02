@@ -10,6 +10,7 @@ height = 19.9974
 
 [node name="boxOrVase" type="AnimatableBody2D"]
 position = Vector2(0, -1)
+collision_layer = 3
 script = ExtResource("1_2dxqc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,15 +1,101 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0uhuo8vqrw3f"]
+[gd_scene load_steps=10 format=3 uid="uid://d0uhuo8vqrw3f"]
 
 [ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="1_jg5d1"]
 [ext_resource type="Texture2D" uid="uid://b1ftbexdf8d6w" path="res://Assets/Tile maps/TX Plant.png" id="2_b5uo0"]
+[ext_resource type="Script" path="res://Scripts/ObjectManager.gd" id="2_elc0u"]
 [ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="2_sdtjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05awr"]
 size = Vector2(14, 7)
 
+[sub_resource type="Animation" id="Animation_ft25x"]
+resource_name = "HitTaken"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.00174533, 0.0, -0.0349066, 0.0, 0.0349066, 0.0349066]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectManager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wt6f5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0174533]
+}
+
+[sub_resource type="Animation" id="Animation_xfbht"]
+resource_name = "treeFall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.261799, 0.523599, 1.0472, 1.5708]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectManager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_tree"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2e4ht"]
+_data = {
+"HitTaken": SubResource("Animation_ft25x"),
+"RESET": SubResource("Animation_wt6f5"),
+"treeFall": SubResource("Animation_xfbht")
+}
+
 [node name="RandomTree" type="AnimatableBody2D"]
 position = Vector2(0, -1)
+rotation = 0.0174533
+collision_layer = 3
 script = ExtResource("1_jg5d1")
+
+[node name="ObjectManager" type="Node" parent="."]
+script = ExtResource("2_elc0u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
@@ -36,3 +122,14 @@ position = Vector2(0, -53)
 texture = ExtResource("2_b5uo0")
 region_enabled = true
 region_rect = Rect2(291, 28, 91, 130)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 3.26467
+offset_top = -21.1268
+offset_right = 43.2647
+offset_bottom = 1.87319
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2e4ht")
+}
