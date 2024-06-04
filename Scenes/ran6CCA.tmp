@@ -1,42 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0uhuo8vqrw3f"]
 
 [ext_resource type="Script" path="res://Scripts/TreeManager.gd" id="1_ebjos"]
-[ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="1_jg5d1"]
+[ext_resource type="Script" path="res://Scripts/Hiteable.gd" id="1_idxgc"]
 [ext_resource type="Texture2D" uid="uid://b1ftbexdf8d6w" path="res://Assets/Tile maps/TX Plant.png" id="2_b5uo0"]
 [ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="2_sdtjc"]
 [ext_resource type="Texture2D" uid="uid://5spmx6jfj5uk" path="res://Assets/23-237655_crack-pixel-art.png" id="4_cfkku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_05awr"]
 size = Vector2(14, 7)
-
-[sub_resource type="Animation" id="Animation_xfbht"]
-resource_name = "Dead"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, 0.261799, 0.523599, 1.0472, 1.5708]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_ft25x"]
 resource_name = "HitTaken"
@@ -68,6 +39,35 @@ tracks/0/keys = {
 "values": [0.0174533]
 }
 
+[sub_resource type="Animation" id="Animation_xfbht"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.261799, 0.523599, 1.0472, 1.5708]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2e4ht"]
 _data = {
 "Dead": SubResource("Animation_xfbht"),
@@ -75,17 +75,20 @@ _data = {
 "RESET": SubResource("Animation_wt6f5")
 }
 
-[node name="RandomTree" type="AnimatableBody2D" node_paths=PackedStringArray("damaged_Sprite", "animations") groups=["Hiteable"]]
+[node name="RandomTree" type="AnimatableBody2D"]
 position = Vector2(0, -1)
 rotation = 0.0174533
 collision_layer = 3
 script = ExtResource("1_ebjos")
-damaged_Sprite = NodePath("Allsprites/DamageSprite")
-life = 20
-animations = NodePath("AnimationPlayer")
 
-[node name="ZindeXManager" type="Node2D" parent="."]
-script = ExtResource("1_jg5d1")
+[node name="Hiteable" type="Node2D" parent="." node_paths=PackedStringArray("damaged_Sprite", "animations")]
+position = Vector2(0.00174533, 0.999999)
+rotation = -0.00174533
+scale = Vector2(1, 1)
+script = ExtResource("1_idxgc")
+damaged_Sprite = NodePath("../Allsprites/DamageSprite")
+life = 20
+animations = NodePath("../AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2.5)
@@ -123,8 +126,8 @@ region_enabled = true
 region_rect = Rect2(291, 28, 91, 130)
 
 [node name="DamageSprite" type="Sprite2D" parent="Allsprites"]
-visible = false
 position = Vector2(7.62939e-06, 3.05176e-05)
+scale = Vector2(1, 1)
 texture = ExtResource("4_cfkku")
 
 [node name="Label" type="Label" parent="."]

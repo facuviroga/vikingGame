@@ -294,10 +294,10 @@ libraries = {
 }
 
 [node name="AttackAreaRigth" parent="." instance=ExtResource("5_7cbc2")]
-position = Vector2(16, -5)
+position = Vector2(16, -6)
 
 [node name="AttackAreaLeft" parent="." instance=ExtResource("5_7cbc2")]
-position = Vector2(-18, -5)
+position = Vector2(-17, -6)
 
 [connection signal="timeout" from="Timer" to="." method="_on_attack_animation_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

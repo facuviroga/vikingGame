@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D2
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var main_character = $"."
-@onready var basic_attack_colission = $"Basic Attack colission"
 @onready var animation_player = $AnimationPlayer
 @onready var attack_area_right = $AttackAreaRigth
 @onready var attack_area_left = $AttackAreaLeft
@@ -17,7 +16,13 @@ var is_doing_action
 var active_attack_side
 var speed=70
 var sprint_speed=50
+var damage=5
 
+
+func _ready():
+	(attack_area_right.get_node("CollisionShape2D") as CollisionShape2D).disabled=true
+	(attack_area_left.get_node("CollisionShape2D") as CollisionShape2D).disabled=true
+	
 func _physics_process(delta):
 	move()
 	attack()
@@ -40,8 +45,8 @@ func attack():
 		collision.disabled=true
 
 func move():
-	var position = self.position.y
-	self.z_index = abs(position)
+	var y_position = self.position.y
+	self.z_index = abs(y_position)
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var is_sprinting = Input.is_action_pressed("sprint")
 	var stoped_sprinting = Input.is_action_just_released("sprint")
@@ -78,16 +83,12 @@ func _on_animation_player_animation_finished(anim_name):
 
 
 func _on_attack_area_body_entered(body):
-	var animation = body.get_node("AnimationPlayer") as AnimationPlayer
-	animation.play("HitTaken")
-	print("comiste hit por puto")
-	pass # Replace with function body.
+	handleHitting(body)	
 
 
-
+func handleHitting(body:Hiteable):
+		body.hit(damage)	
+	
 
 func _on_attack_area_left_body_entered(body):
-	var animation = body.get_node("AnimationPlayer") as AnimationPlayer
-	animation.play("HitTaken")
-	print("comiste hit por puto")
-	pass # Replace with function body.
+	handleHitting(body)

@@ -1,16 +1,12 @@
-extends AnimatableBody2D
-@onready var object_manager = $ObjectManager
+extends Node2D
 
-
+class_name ZindeXManager
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-	var positionY = self.position.y 
-	self.z_index=abs(positionY)
+	var positionY = self.get_parent().position.y 
+	self.get_parent().z_index=abs(positionY)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
