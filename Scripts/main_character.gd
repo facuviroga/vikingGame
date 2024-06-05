@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 @onready var attack_area_right = $AttackAreaRigth
 @onready var attack_area_left = $AttackAreaLeft
+@onready var pick_up_sound = $Audios/PickUpSound
+@onready var inventory = $Inventory
 
 
 
@@ -22,6 +24,11 @@ var damage=5
 func _ready():
 	(attack_area_right.get_node("CollisionShape2D") as CollisionShape2D).disabled=true
 	(attack_area_left.get_node("CollisionShape2D") as CollisionShape2D).disabled=true
+	inventory.close()
+	
+func _input(event):
+	if event.is_action_pressed("toggle_inv"):
+		inventory.toggle()
 	
 func _physics_process(delta):
 	move()
@@ -37,9 +44,9 @@ func attack():
 		
 		
 	var collision = active_attack_side.get_node("CollisionShape2D") as CollisionShape2D
-	if is_attacking :
+	if is_attacking && !is_doing_action:
 		is_doing_action=true
-		animation_player.play("attack animation'")
+		animation_player.play("attack animation")
 		collision.disabled=false
 	else:	
 		collision.disabled=true
@@ -55,11 +62,11 @@ func move():
 	var is_sprinting_multiplyer = int(is_sprinting)
 	if is_sprinting && !is_doing_action : 
 		is_doing_action=true
-		animated_sprite.play("sprint")
+		animation_player.play("Sprint")
 	
 	if direction.x==direction.x && direction.x==0 :
 		if !is_doing_action:
-			animated_sprite.play("Idle")
+			animation_player.play("Idle")
 	else:
 		if  direction.x<0: 
 			animated_sprite.flip_h=true
@@ -68,12 +75,11 @@ func move():
 			animated_sprite.flip_h=false	
 			side_faceing = 1
 		if !is_doing_action:	
-			animated_sprite.play("run")	
+			animation_player.play("walk")	
 
 	velocity = direction * (speed+ sprint_speed*is_sprinting_multiplyer)
 	
 	move_and_slide()
-
 
 func _on_animation_player_animation_finished(anim_name):
 	var collision = active_attack_side.get_node("CollisionShape2D") as CollisionShape2D
@@ -81,14 +87,20 @@ func _on_animation_player_animation_finished(anim_name):
 	is_doing_action=false
 	pass # Replace with function body.
 
-
 func _on_attack_area_body_entered(body):
 	handleHitting(body)	
 
-
 func handleHitting(body:Hiteable):
 		body.hit(damage)	
-	
 
 func _on_attack_area_left_body_entered(body):
 	handleHitting(body)
+
+func _on_pick_up_area_area_entered(area):
+	var item:Item = area.get_parent()
+	var item_added = inventory.addItem(item)
+	if item_added:
+		pick_up_sound.play()
+		
+	
+	pass # Replace with function body.

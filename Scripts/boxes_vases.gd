@@ -6,8 +6,8 @@ class_name BoxOrVase
 
 
 func _ready():
-	items.append(load("res://Scenes/ruby.tscn"))
-	items.append(load("res://Scenes/Potion.tscn"))
+	items.append({"item":load('res://Scenes/ruby.tscn'),"qtty":1,"prob":10})
+	items.append({"item":load("res://Scenes/Potion.tscn"),"qtty":1,"prob":55})
 	life=life
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

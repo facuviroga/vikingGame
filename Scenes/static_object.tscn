@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://v411ur3bhehd"]
+
+[ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="2_uylm6"]
+[ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="3_laysj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05awr"]
+size = Vector2(14, 7)
+
+[node name="StaticObject" type="AnimatableBody2D" groups=["Hiteable"]]
+position = Vector2(0, -1)
+rotation = 0.0174533
+collision_layer = 3
+
+[node name="ZindeXManager" type="Node2D" parent="."]
+script = ExtResource("2_uylm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_05awr")
+debug_color = Color(0.841894, 0.29898, 0.609052, 0.42)
+
+[node name="Allsprites" type="Node2D" parent="."]
+position = Vector2(-0.0209442, -12)
+rotation = -0.00174533
+scale = Vector2(0.0128437, 0.0319873)
+
+[node name="Selectable Sprites" type="Node2D" parent="Allsprites"]
+position = Vector2(3.05176e-05, 375.149)
+rotation = 0.000700795
+scale = Vector2(77.859, 31.2626)
+skew = 0.0036459
+script = ExtResource("3_laysj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 3.26467
+offset_top = -21.1268
+offset_right = 43.2647
+offset_bottom = 1.87319
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

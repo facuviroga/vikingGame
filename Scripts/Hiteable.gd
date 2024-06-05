@@ -6,8 +6,10 @@ class_name Hiteable
 @export var life:int
 @export var animations:AnimationPlayer
 @export var items:Array
+@export var hitAudio:AudioStreamPlayer2D
 signal dead
 func _ready():
+	damaged_Sprite.visible=false
 	add_to_group("Hiteable")
 	#add_user_signal("dead",[{"name":"items_droped","type": TYPE_OBJECT}])
 	damaged_Sprite.visible=false
@@ -18,7 +20,8 @@ func hit(damage):
 		animations.play("HitTaken")
 		if !damaged_Sprite.visible:
 			damaged_Sprite.visible=true
-	if life==0: 
+	if life==0:
+		life-=1 
 		release_items()
 		animations.play("Dead")
 		

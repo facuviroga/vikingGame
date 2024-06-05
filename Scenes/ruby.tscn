@@ -8,4 +8,5 @@ atlas = ExtResource("2_qi3hk")
 region = Rect2(170.042, 47.9103, 20.4338, 21.976)
 
 [node name="Item" instance=ExtResource("1_0ushl")]
+type = "ruby"
 texture = SubResource("AtlasTexture_1f8pn")

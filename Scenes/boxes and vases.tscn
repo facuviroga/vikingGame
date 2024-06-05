@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dk2g7fc834oou"]
+[gd_scene load_steps=24 format=3 uid="uid://dk2g7fc834oou"]
 
 [ext_resource type="Script" path="res://Scripts/zindexManager.gd" id="1_2dxqc"]
 [ext_resource type="Script" path="res://Scripts/boxes_vases.gd" id="1_obm4c"]
-[ext_resource type="Script" path="res://Scripts/Hiteable.gd" id="2_ao5ap"]
 [ext_resource type="Script" path="res://Scripts/randomSprite.gd" id="2_qajpw"]
 [ext_resource type="Texture2D" uid="uid://5spmx6jfj5uk" path="res://Assets/23-237655_crack-pixel-art.png" id="3_2avpu"]
 [ext_resource type="Texture2D" uid="uid://bwfyh24l024py" path="res://Assets/Tile maps/TX Props.png" id="3_4kfln"]
@@ -164,13 +163,6 @@ animations = NodePath("AnimationPlayer")
 rotation = 0.0349066
 script = ExtResource("1_2dxqc")
 
-[node name="Hiteable" type="Node2D" parent="." node_paths=PackedStringArray("damaged_Sprite", "animations")]
-z_index = 1
-script = ExtResource("2_ao5ap")
-damaged_Sprite = NodePath("../All Sprites/DamagedSprite")
-life = 10
-animations = NodePath("../AnimationPlayer")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 rotation = -1.587
@@ -216,6 +208,7 @@ region_enabled = true
 region_rect = Rect2(163.162, 346.979, 25.1914, 35.4545)
 
 [node name="DamagedSprite" type="Sprite2D" parent="All Sprites"]
+visible = false
 z_index = 12
 position = Vector2(0.312501, -11.3125)
 scale = Vector2(0.0251447, 0.0338022)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bai23fe4py2of"]
+[gd_scene load_steps=25 format=3 uid="uid://bai23fe4py2of"]
 
 [ext_resource type="Texture2D" uid="uid://bvoy0nfm1xo0c" path="res://Assets/Tile maps/TX Tileset Grass.png" id="1_hj0tf"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_ilwhg"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://cef4ad803wxay" path="res://Scenes/main_character.tscn" id="7_ycbv8"]
 [ext_resource type="PackedScene" uid="uid://d0uhuo8vqrw3f" path="res://Scenes/randomTree.tscn" id="9_1hngf"]
 [ext_resource type="PackedScene" uid="uid://dk2g7fc834oou" path="res://Scenes/boxes and vases.tscn" id="10_tygpx"]
+[ext_resource type="PackedScene" uid="uid://clsn0m8f2oqxv" path="res://Scenes/berry.tscn" id="11_vdhwj"]
+[ext_resource type="PackedScene" uid="uid://cdb7utvfnurx3" path="res://Scenes/random_bush.tscn" id="12_2ax77"]
+[ext_resource type="PackedScene" uid="uid://cyt163firj7g6" path="res://Scenes/Potion.tscn" id="14_8ioqa"]
+[ext_resource type="PackedScene" uid="uid://cwcsiooeifpfv" path="res://Scenes/ruby.tscn" id="15_404bd"]
+[ext_resource type="PackedScene" uid="uid://c4qp5shdex4hc" path="res://Scenes/stone.tscn" id="16_qj762"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_umjb7"]
 texture = ExtResource("1_hj0tf")
@@ -2589,40 +2594,47 @@ layer_3/tile_data = PackedInt32Array(327750, 851974, 11, 327740, 851974, 11, 327
 
 [node name="Trees" type="Node" parent="."]
 
-[node name="Tree" parent="Trees" instance=ExtResource("9_1hngf")]
-position = Vector2(443, 137)
+[node name="RandomTree" parent="Trees" instance=ExtResource("9_1hngf")]
+position = Vector2(599, 138)
 
-[node name="tree" parent="Trees" instance=ExtResource("9_1hngf")]
-position = Vector2(597, 135)
+[node name="RandomTree2" parent="Trees" instance=ExtResource("9_1hngf")]
+position = Vector2(571, 110)
 
-[node name="tree2" parent="Trees" instance=ExtResource("9_1hngf")]
-position = Vector2(514, 88)
-
-[node name="tree3" parent="Trees" instance=ExtResource("9_1hngf")]
-position = Vector2(624, 167)
+[node name="RandomTree3" parent="Trees" instance=ExtResource("9_1hngf")]
+position = Vector2(516, 91)
 
 [node name="Boxes and Vases" type="Node" parent="."]
 
-[node name="randomProp" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(455, 208)
-
-[node name="randomProp2" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(612, 241)
-
-[node name="randomProp3" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(535, 111)
-life = 15
-
 [node name="boxOrVase" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(452, 129)
+position = Vector2(579, 132)
 
 [node name="boxOrVase2" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(440, 148)
-life = 15
+position = Vector2(611, 126)
 
-[node name="boxOrVase3" parent="Boxes and Vases" instance=ExtResource("10_tygpx")]
-position = Vector2(514, 180)
+[node name="Bushes" type="Node" parent="."]
+
+[node name="RandomBush" parent="Bushes" instance=ExtResource("12_2ax77")]
+z_as_relative = false
+position = Vector2(597, 157)
+
+[node name="RandomBush2" parent="Bushes" instance=ExtResource("12_2ax77")]
+position = Vector2(550, 120)
+
+[node name="Stone" parent="." instance=ExtResource("16_qj762")]
+position = Vector2(450, 103)
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_ilwhg")
+
+[node name="Berry" parent="." instance=ExtResource("11_vdhwj")]
+position = Vector2(484, 161)
+
+[node name="Item" parent="." instance=ExtResource("14_8ioqa")]
+position = Vector2(392, 178)
+
+[node name="Item2" parent="." instance=ExtResource("15_404bd")]
+position = Vector2(378, 128)
+
+[node name="Item3" parent="." instance=ExtResource("15_404bd")]
+position = Vector2(560, 171)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fs4u1tn5t5f"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory.gd" id="1_vilen"]
+[ext_resource type="PackedScene" uid="uid://7haeywfrupp4" path="res://Scenes/InventoryBackgorund.tscn" id="2_np23b"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vilen")
+
+[node name="InventoryVisual" parent="." instance=ExtResource("2_np23b")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Itembag" type="Node2D" parent="."]
+visible = false

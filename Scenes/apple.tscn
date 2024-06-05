@@ -8,4 +8,5 @@ atlas = ExtResource("2_ge1df")
 region = Rect2(49.7645, 145.598, 20.3567, 19.5085)
 
 [node name="Apple" instance=ExtResource("1_iynkk")]
+type = "apple"
 texture = SubResource("AtlasTexture_ldqbl")

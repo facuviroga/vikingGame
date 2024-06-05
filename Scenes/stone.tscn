@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4qp5shdex4hc"]
+
+[ext_resource type="PackedScene" uid="uid://v411ur3bhehd" path="res://Scenes/static_object.tscn" id="1_tiaua"]
+[ext_resource type="Script" path="res://Scripts/StoneManager.gd" id="2_pe5uw"]
+[ext_resource type="Texture2D" uid="uid://bwfyh24l024py" path="res://Assets/Tile maps/TX Props.png" id="3_3oqnv"]
+[ext_resource type="Texture2D" uid="uid://5spmx6jfj5uk" path="res://Assets/23-237655_crack-pixel-art.png" id="4_osuib"]
+
+[sub_resource type="Animation" id="Animation_7jejl"]
+resource_name = "Dead"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j47qb"]
+resource_name = "HitTaken"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5k6ex"]
+_data = {
+"Dead": SubResource("Animation_7jejl"),
+"HitTaken": SubResource("Animation_j47qb")
+}
+
+[node name="Stone" node_paths=PackedStringArray("damaged_Sprite", "animations") instance=ExtResource("1_tiaua")]
+script = ExtResource("2_pe5uw")
+damaged_Sprite = NodePath("Allsprites/damages")
+life = 10
+animations = NodePath("AnimationPlayer")
+
+[node name="Allsprites" parent="." index="2"]
+position = Vector2(0.563537, -25.0136)
+
+[node name="Sprite2D" type="Sprite2D" parent="Allsprites/Selectable Sprites" index="0"]
+texture = ExtResource("3_3oqnv")
+region_enabled = true
+region_rect = Rect2(158.535, 477.274, 33.3114, 34.5605)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Allsprites/Selectable Sprites" index="1"]
+texture = ExtResource("3_3oqnv")
+region_enabled = true
+region_rect = Rect2(129.117, 480.449, 30.1425, 28.0395)
+
+[node name="damages" type="Sprite2D" parent="Allsprites" index="1"]
+visible = false
+position = Vector2(14.6755, 375.103)
+texture = ExtResource("4_osuib")
+
+[node name="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_5k6ex")
+}

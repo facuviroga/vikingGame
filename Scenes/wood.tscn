@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgwk8jdq7sasp"]
+
+[ext_resource type="PackedScene" uid="uid://c6a5oxjfabhoc" path="res://Scenes/Item.tscn" id="1_rljrc"]
+[ext_resource type="Texture2D" uid="uid://csttdltndyuyw" path="res://Assets/Objects/resources_basic.png" id="2_3dyge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wgwq"]
+atlas = ExtResource("2_3dyge")
+region = Rect2(193.051, 2.38778, 21.6669, 21.0296)
+
+[node name="Wood" instance=ExtResource("1_rljrc")]
+texture = SubResource("AtlasTexture_8wgwq")
